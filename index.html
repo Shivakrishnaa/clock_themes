@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE-edge">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>TIME_CLOCK</title>
+    <style>
+        *{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-size: 100% 100vh;
+}
+#Time{
+    position: absolute;
+    bottom: 180px;
+    left: 60px;
+    color: white;
+
+
+}
+#Day{
+   position: absolute;
+   bottom: 80px;
+   left: 60px;
+   color: white;
+    
+}
+#Date{
+    position: absolute;
+    bottom: 110px;
+    left: 60px;
+    color: white;
+    
+}
+#maincontainer{
+    background-color: transparent;
+    height: 100%;
+    width: 100vh;
+    overflow: hidden;
+
+}
+#container{
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    left: 450px;
+    top: 150px; 
+    background-color: rgba(255, 255, 255, 0.253) ;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+
+    transition: all 2s;
+}
+#container:hover{
+    height: 400px;
+    width: 400px;
+}
+#seconds{
+    font-size: 250px;
+    position: absolute;
+   
+    left: 30px;
+    color: rgba(0, 0, 0, 0.336);
+
+   
+}
+#greet{
+    width: 200px;
+    height: 100px;
+    background-color: rgba(0, 128, 128, 0.347);
+    position: absolute;
+    font-style: italic;
+    font-weight: bold;
+    bottom: 500px;
+    left: 600px;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+}
+    </style>
+
+</head>
+<body onload="clock()" id="a">
+    <div id="maincontainer"> 
+    <div id="container">
+   <b> <i><h1 id="seconds"></h1></i></b>
+   <b><i> <h1 id="Time"></h1></i></b>
+   <b><i> <h1 id="Date"></h1></i></b>
+   <b><i> <h1 id="Day"></h1></i></b>
+</div>
+</div>
+<div id="greet" style="display: none;" ><div id="close" onclick="closetab()">x
+</div>
+<h1 id="textgreet"></h1>
+</div>
+<script>
+
+function clock()
+{
+    var date=new Date()
+    var hh=date.getHours()
+    var mm=date.getMinutes()
+    var ss=date.getSeconds()
+    var dd=date.getDate()
+    var mo=date.getMonth()
+    var yy=date.getFullYear()
+    var day=date.getDay()
+    var am_pm="AM"
+    if (hh>=22)
+    {
+        am_pm="PM"
+        if(hh>=3)
+        {
+            hh-=12;
+        }
+    }
+    if(hh==0)
+    {
+        hh=12;
+    }
+    else if(mo==0)
+    {
+        mo="jan"
+    }
+   else if(mo==1)
+    {
+        mo="feb"
+    }
+   else if(mo==2)
+    {
+        mo="mar"
+    }
+   else if(mo==3)
+    {
+        mo="apr"
+    }
+   else if(mo==4)
+    {
+        mo="may"
+    }
+   else if(mo==5)
+    {
+        mo="jun"
+    }
+    else if(mo==6)
+    {
+        mo="jul"
+    }
+   else if(mo==7)
+    {
+        mo="aug"
+    }
+    else if(mo==8)
+    {
+        mo="sep"
+    }
+    else if(mo==9)
+    {
+        mo="oct"
+    }
+   else if(mo==10)
+    {
+        mo="jan"
+    }
+    else
+    {
+        mo="dec"
+    }
+    var fullTime=hh+":"+mm+":" +am_pm
+    var fullDate=dd+"/"+mo+"/"+yy
+    document.getElementById("seconds").innerHTML=ss
+    switch(day)
+    {
+        case 0:
+            day="Sunday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/ZMCu.gif)"
+            break;
+        case 1:
+            day="Monday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/6wY.gif)"
+            break;
+        case 2:
+            day="Tuesday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/CW5.gif)"
+            break;
+        case 3:
+            day="Wednesday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/2ruN.gif)"
+            break;
+        case 4:
+            day="Thursday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/UGEY.gif)"
+            break;
+        case 5:
+            day="Friday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/B8mk.gif)"
+            break;
+        case 6:
+            day="Saterday"
+            document.getElementById("a").style.backgroundImage="URL(https://i.gifer.com/1UhP.gif)"
+            break;
+    }
+    document.getElementById("Date").innerHTML=fullDate
+   // document.getElementById("Date").style.fontSize="100px"
+    document.getElementById("Time").innerHTML=fullTime
+   // document.getElementById("Time").style.fontSize="100px"
+    document.getElementById("Day").innerHTML=day
+   // document.getElementById("Day").style.fontSize="100px"
+   var refreshtheclock=setTimeout(function() {clock()},1000);
+}
+function greet()
+{
+    var time=new Date()
+    var timee=time.getHours()
+    if(timee>=6 && timee<=12)
+    {
+        document.getElementById("textgreet").innerHTML="good morning"
+    }
+    else if (timee>12 && timee<=16)
+    {
+        document.getElementById("textgreet").innerHTML="good afternoon"
+    }
+    else 
+    {
+        document.getElementById("textgreet").innerHTML="Good evening"
+    }
+    document.getElementById("greet").removeAttribute("style")
+
+}
+var greettimeout=setTimeout(greet,5000)
+function closetab()
+{
+    document.getElementById("greet").setAttribute("style","display:none")
+}
+
+</script>
+</body>
+</html>
